@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,6 +13,7 @@
   "packageManager": "pnpm@10.10.0",
   "dependencies": {
     "@langchain/core": "^0.3.56",
+    "dotenv": "^16.5.0",
     "langchain": "^0.3.26"
   }
 }
