@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "ts-node src/index.ts",
+    "build": "tsc",
+    "dev": "ts-node-dev --respawn src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,7 +15,15 @@
   "packageManager": "pnpm@10.10.0",
   "dependencies": {
     "@langchain/core": "^0.3.56",
+    "@langchain/google-genai": "^0.2.9",
+    "@langchain/langgraph": "^0.2.72",
     "dotenv": "^16.5.0",
-    "langchain": "^0.3.26"
+    "langchain": "^0.3.26",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.19",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }
