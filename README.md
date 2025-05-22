@@ -1,5 +1,8 @@
 # LangChain Test Project
 
+- https://js.langchain.com/docs/tutorials/rag/
+- https://js.langchain.com/docs/how_to/code_splitter/#markdown
+
 A project for experimenting with LangChain and language models.
 
 ## Setup
