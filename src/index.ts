@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import { ChatGoogleGenerativeAI } from '@langchain/google-genai';
+import { ChatOpenAI } from '@langchain/openai';
 import { OpenAIEmbeddings } from "@langchain/openai";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { DirectoryLoader } from "langchain/document_loaders/fs/directory";
@@ -52,6 +53,13 @@ if (process.env.OPENAI_API_KEY) {
         model: "gemini-2.0-flash",
         // model: "gemini-2.5-flash-preview-05-20", // this is not working with generate() , trigger error:
         // Cannot read properties of undefined (reading 'text')
+    });
+
+    // https://platform.openai.com/docs/pricing
+    // Alternative model for tool usage
+    const modelForTools = new ChatOpenAI({
+        temperature: 0,
+        model: "gpt-4o-mini-2024-07-18",
     });
 
     // Simple test of the model without tools
@@ -211,9 +219,12 @@ if (process.env.OPENAI_API_KEY) {
     // Step 1: Generate an AIMessage that may include a tool-call to be sent.
     async function queryOrRespond(state: typeof MessagesAnnotation.State) {
         try {
+
             // this won't work with gemini?
-            const llmWithTools = model.bindTools([retrieve]);
+            // const llmWithTools = model.bindTools([retrieve]);
             // const llmWithTools = model.bind({ tools: [retrieve] });
+            // Use OpenAI for tool calling since it has better support
+            const llmWithTools = modelForTools.bindTools([retrieve]);
             const response = await llmWithTools.invoke(state.messages);
             console.log("Response from queryOrRespond:", response);
 
