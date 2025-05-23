@@ -8,3 +8,5 @@ We'd need to modify your LangGraph to have:
 - combineResults node - merges and deduplicates
 - generate node - (existing, but enhanced with richer context)
 
+- Uses Gemini
+- Portable - completely standalone function that doesn't modify existing workflow. also create test for it.
