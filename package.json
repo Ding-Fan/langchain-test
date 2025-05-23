@@ -14,11 +14,13 @@
   "license": "ISC",
   "packageManager": "pnpm@10.10.0",
   "dependencies": {
+    "@langchain/community": "^0.3.43",
     "@langchain/core": "^0.3.56",
     "@langchain/google-genai": "^0.2.9",
     "@langchain/langgraph": "^0.2.72",
     "dotenv": "^16.5.0",
     "langchain": "^0.3.26",
+    "pdf-parse": "^1.1.1",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
