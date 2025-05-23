@@ -8,6 +8,7 @@
     "build": "tsc",
     "dev": "ts-node-dev --respawn src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "test:questions": "ts-node src/questionExpansion.test.ts",
     "chroma:start": "sudo docker run -d --name chroma-persistent -v ./chroma-data:/data -p 8000:8000 chromadb/chroma",
     "chroma:stop": "sudo docker stop chroma-persistent",
     "chroma:remove": "sudo docker rm chroma-persistent",

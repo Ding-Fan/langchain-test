@@ -17,6 +17,7 @@ import {
     SystemMessage,
     ToolMessage,
 } from "@langchain/core/messages";
+import { questionExpansion, type ExpandedQuestions } from "./questionExpansion";
 import { MessagesAnnotation } from "@langchain/langgraph";
 import { ToolNode } from "@langchain/langgraph/prebuilt";
 import { Annotation, StateGraph } from "@langchain/langgraph";
@@ -196,6 +197,12 @@ if (process.env.OPENAI_API_KEY) {
 
 
     const retrieveSchema = z.object({ query: z.string() });
+
+    // Test the questionExpansion function
+    console.log("\n=== Testing Question Expansion ===");
+    const testQuestion = "What application for fedora are recommended?";
+    const expandedQuestions = await questionExpansion(testQuestion, model);
+    console.log("Test completed!\n");
 
     const retrieve = tool(
         async ({ query }) => {
