@@ -179,9 +179,10 @@ if (process.env.OPENAI_API_KEY) {
 
         // Split documents into chunks
         console.log("Splitting documents into chunks...");
-        const textSplitter = new RecursiveCharacterTextSplitter({
+
+        const textSplitter = RecursiveCharacterTextSplitter.fromLanguage("markdown", {
             chunkSize: 1000,
-            chunkOverlap: 200,
+            chunkOverlap: 100,
         });
 
         const splitDocs = await textSplitter.splitDocuments(processedDocs);
