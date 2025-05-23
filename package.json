@@ -7,7 +7,16 @@
     "start": "ts-node src/index.ts",
     "build": "tsc",
     "dev": "ts-node-dev --respawn src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "chroma:start": "sudo docker run -d --name chroma-persistent -v ./chroma-data:/data -p 8000:8000 chromadb/chroma",
+    "chroma:stop": "sudo docker stop chroma-persistent",
+    "chroma:remove": "sudo docker rm chroma-persistent",
+    "chroma:restart": "pnpm run chroma:stop && pnpm run chroma:remove && pnpm run chroma:start",
+    "chroma:logs": "sudo docker logs chroma-persistent",
+    "chroma:status": "sudo docker ps -f name=chroma-persistent",
+    "chroma:reset": "pnpm run chroma:stop && pnpm run chroma:remove && rm -rf ./chroma-data && mkdir -p ./chroma-data && pnpm run chroma:start",
+    "chroma:health": "curl -X GET http://localhost:8000/api/v1/heartbeat || echo 'Chroma not responding'",
+    "docker:cleanup": "sudo docker system prune -f && sudo docker volume prune -f"
   },
   "keywords": [],
   "author": "",

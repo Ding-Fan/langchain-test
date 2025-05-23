@@ -325,21 +325,9 @@ if (process.env.OPENAI_API_KEY) {
         console.log(txt);
     };
 
-    let inputs1 = { messages: [{ role: "user", content: "Tell me about your blog" }] };
+    let inputs1 = { messages: [{ role: "user", content: "Tell me about the blog" }] };
 
     for await (const step of await graph.stream(inputs1, {
-        streamMode: "values",
-    })) {
-        const lastMessage = step.messages[step.messages.length - 1];
-        prettyPrint(lastMessage);
-        console.log("-----\n");
-    }
-
-    let inputs2 = {
-        messages: [{ role: "user", content: "What topics do you write about in your blog?" }],
-    };
-
-    for await (const step of await graph.stream(inputs2, {
         streamMode: "values",
     })) {
         const lastMessage = step.messages[step.messages.length - 1];
@@ -357,7 +345,7 @@ if (process.env.OPENAI_API_KEY) {
     };
 
     let inputs3 = {
-        messages: [{ role: "user", content: "What technical topics do you cover in your blog?" }],
+        messages: [{ role: "user", content: "What application for fedora are recommended?" }],
     };
 
     for await (const step of await graphWithMemory.stream(inputs3, threadConfig)) {
@@ -366,16 +354,5 @@ if (process.env.OPENAI_API_KEY) {
         console.log("-----\n");
     }
 
-    let inputs4 = {
-        messages: [
-            { role: "user", content: "Can you share some examples of these topics?" },
-        ],
-    };
-
-    for await (const step of await graphWithMemory.stream(inputs4, threadConfig)) {
-        const lastMessage = step.messages[step.messages.length - 1];
-        prettyPrint(lastMessage);
-        console.log("-----\n");
-    }
 })();
 
